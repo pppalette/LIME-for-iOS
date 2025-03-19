@@ -2,13 +2,14 @@
 
 ## 概要
 
-This is an Jailbreak Tweak to clean [**LINE**](https://line.me).
+This is a Jailbreak Tweak to clean [**LINE**](https://line.me).
 
 LINE を掃除する 脱獄Tweak です。
 
 Inspired by [**LIME**](https://github.com/Chipppppppppp/LIME)
 
 Make LINE Great Again
+![view](https://github.com/user-attachments/assets/6d659ac2-2d94-40ee-af66-d078fdd9425b)
 
 ## 機能
 
