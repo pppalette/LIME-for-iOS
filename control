@@ -1,0 +1,9 @@
+Package: com.purplepalette.lime-for-ios
+Name: LIME-for-iOS
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Adkiller for LINE iOS
+Maintainer: PurplePalette
+Author: PurplePalette
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)

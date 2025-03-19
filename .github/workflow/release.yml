@@ -1,0 +1,59 @@
+name: release
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Prepare Theos
+        run: |
+          chmod +x ./script/install-theos.sh
+          ./script/install-theos.sh
+        env:
+          THEOS: '/opt/theos'
+      - name: Build tweak package
+        run: |
+          make package
+        env:
+          THEOS: '/opt/theos'
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: packages
+  release:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build-artifact
+        path: packages/
+    
+    - name: Get Tag 
+      id: get-tag-name
+      run: echo "tag-name=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+  
+    - name: Create Release
+      run: gh release create $TAG_NAME -t "$TAG_NAME"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG_NAME: ${{ steps.get-tag-name.outputs.tag-name }}
+
+    - name: Upload Release Assets
+      run: |
+        for file in packages/*; do
+          echo "Uploading $file..."
+          gh release upload $TAG_NAME "$file" --clobber
+        done
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG_NAME: ${{ steps.get-tag-name.outputs.tag-name }}
