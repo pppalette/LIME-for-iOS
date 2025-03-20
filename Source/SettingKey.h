@@ -1,0 +1,7 @@
+#define KEY_REMOVE_VOOM_TAB @"VOOMタブ削除"
+#define KEY_REMOVE_CALL_TAB @"通話タブ削除"
+#define KEY_REMOVE_NEWS_TAB @"ニュースタブ削除"
+#define KEY_REMOVE_AD_TALK_LIST @"トーク一覧の広告削除"
+#define KEY_REMOVE_AD_OPENCHAT @"OCの広告削除"
+#define KEY_REMOVE_AD_ALBUM @"アルバムの広告削除"
+#define KEY_HOME_MINOR_REGION @"ホームを昔に戻す(マイナーリージョン化)"
